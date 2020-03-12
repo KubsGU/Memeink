@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage NavigationPage.HasNavigationBar="False"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="airbnbv2.SearchFriends">
+    <StackLayout x:Name="main_container" BackgroundColor="GhostWhite" >
+        <SearchBar Placeholder="Search..." TextChanged="SearchForFriend"/>
+        <ListView x:Name="SearchFriend_List" HasUnevenRows="True" ItemSelected="UserSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" BackgroundColor="{Binding Source={x:Reference main_container}, Path=BackgroundColor}" x:Name="cell_container">
+                            <StackLayout Spacing="0" HorizontalOptions="StartAndExpand">
+                                <Label x:Name="userLogin" Text="{Binding Login}" FontSize="20" Padding="10,2,5,0" FontAttributes="Bold"/>
+                                <Label Text="{Binding Rank}" Padding="15, 0, 5, 5" Opacity="0.7" FontAttributes="Italic"/>
+                            </StackLayout>
+                            <Button Text="+" FontSize="20" FontAttributes="Bold" WidthRequest="60" CornerRadius="40"
+                                    Clicked="AddFriendButton" CommandParameter="{Binding .}" 
+                                    BackgroundColor="{Binding Source={x:Reference cell_container}, Path=BackgroundColor}"/>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Fuck Go Back" Clicked="BackButton"/>
+    </StackLayout>
+   
+</ContentPage>
